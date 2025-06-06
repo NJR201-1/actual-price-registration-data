@@ -32,17 +32,6 @@
 - undetected_chromedriver: 防止瀏覽器被偵測為自動化工具
 - requests: HTTP 請求函式庫
 """
-
-# 實價登錄爬取器
-# 
-# 考慮以下事實：
-#  - 實價登錄網站的 API 回傳的資訊較前端頁面擁有更多資訊－比如經緯度。
-#  - 實價登錄網站使用一加密機制、動態產生查詢網址與參數。
-# 
-# 我們採取以下作法因應、處理：
-# 1. 採用 undetected_chromedriver 至實價登錄網站、藉由網站上前端腳本批次產生我們查詢所需的網址。
-# 2. 將前一步驟網址交由 requests 模組發送 GET 請求，取得 API 回應資料，並儲存為檔案。
-#
 from datetime import datetime
 import time
 import json
