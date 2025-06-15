@@ -16,8 +16,8 @@ with open(PATH_CITIES_FILE, 'r', encoding='utf-8') as f:
 
 # install module
 
-!pip install selenium
-!pip install undetected_chromedriver
+# !pip install selenium
+# !pip install undetected_chromedriver
 
 from selenium import webdriver
 import undetected_chromedriver as uc
@@ -45,17 +45,17 @@ year = datetime.now().year - 1911  # 民國年
 month = datetime.now().month
 
 # 讀取城市與行政區資料
-try:
-    response = requests.get(CITIES_URL, timeout=30)
-    response.raise_for_status()
-    cities = json.loads(response.text)
-    print(f"成功載入 {len(cities)} 個城市資料")
-except requests.RequestException as e:
-    print(f"無法載入城市資料: {e}")
-    exit(1)
-except json.JSONDecodeError as e:
-    print(f"JSON解析錯誤: {e}")
-    exit(1)
+# try:
+#     response = requests.get(CITIES_URL, timeout=30)
+#     response.raise_for_status()
+#     cities = json.loads(response.text)
+#     print(f"成功載入 {len(cities)} 個城市資料")
+# except requests.RequestException as e:
+#     print(f"無法載入城市資料: {e}")
+#     exit(1)
+# except json.JSONDecodeError as e:
+#     print(f"JSON解析錯誤: {e}")
+#     exit(1)
 
 # 建立查詢列表
 queries = []
@@ -71,7 +71,7 @@ for city in cities:
             queries.append(query)
 
 print(f"總共建立 {len(queries)} 個查詢")
-'''
+
 # 查詢參數
 params = {
     "ptype": "1,2,3,4,5",
@@ -115,7 +115,7 @@ params = {
 }
 
 params_collection = [dict(params, city=query.get('city').get('id'), town=query.get('town').get('id')) for query in queries]
-'''
+
 # 手動指定 Chrome 執行檔路徑
 CHROME_PATH = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
