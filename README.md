@@ -392,13 +392,15 @@
 | 高雄市 | 鹽埕區   |        4,595 |
 | 高雄市 | 鼓山區   |       32,957 |
 
-# crawler
-
 # 環境設定
 
 #### 安裝 pipenv
 
     pip install pipenv==2022.4.8
+
+#### set pipenv
+
+    pipenv --python ~/.pyenv/versions/3.8.10/bin/python
 
 #### 安裝 repo 套件
 
@@ -443,13 +445,21 @@
 
 #### build docker image
 
-    docker build -f Dockerfile -t tcayi92/housedata:0.0.1 .
-    docker build -f with.env.Dockerfile -t tcayi92/housedata:0.0.3 .
+    docker build -f Dockerfile -t tcayi92/tibame_crawler:0.0.1 .
+    docker build -f Dockerfile -t tcayi92/tibame_crawler:0.0.2 .
+    docker build -f with.env.Dockerfile -t tcayi92/tibame_crawler:0.0.3 .
+    docker build -f with.env.Dockerfile -t tcayi92/tibame_crawler:0.0.4 .
+    docker build -f with.env.Dockerfile -t tcayi92/tibame_crawler:0.0.5 .
+    docker build -f with.env.Dockerfile -t tcayi92/tibame_crawler:0.0.6 .
 
 #### push docker image
 
-    docker push tcayi92/housedata:0.0.1
-    docker push tcayi92/housedata:0.0.3
+    docker push tcayi92/tibame_crawler:0.0.1
+    docker push tcayi92/tibame_crawler:0.0.2
+    docker push tcayi92/tibame_crawler:0.0.3
+    docker push tcayi92/tibame_crawler:0.0.4
+    docker push tcayi92/tibame_crawler:0.0.5
+    docker push tcayi92/tibame_crawler:0.0.6
 
 #### 建立 network
 
@@ -463,24 +473,55 @@
 
     docker compose -f rabbitmq-network.yml down
 
+#### 啟動 mysql
+
+    docker compose -f mysql.yml up -d
+
+#### 關閉 mysql
+
+    docker compose -f mysql.yml down
+
 #### 啟動 worker
 
     docker compose -f docker-compose-worker-network.yml up -d
     DOCKER_IMAGE_VERSION=0.0.3 docker compose -f docker-compose-worker-network-version.yml up -d
+    DOCKER_IMAGE_VERSION=0.0.5 docker compose -f docker-compose-worker-network-version.yml up -d
+    DOCKER_IMAGE_VERSION=0.0.6 docker compose -f docker-compose-worker-network-version.yml up -d
 
 #### 關閉 worker
 
-    docker compose -f docker-compose-worker-network.yml up -d
+    docker compose -f docker-compose-worker-network.yml down
+    DOCKER_IMAGE_VERSION=0.0.3 docker compose -f docker-compose-worker-network-version.yml down
+    DOCKER_IMAGE_VERSION=0.0.5 docker compose -f docker-compose-worker-network-version.yml down
+    DOCKER_IMAGE_VERSION=0.0.6 docker compose -f docker-compose-worker-network-version.yml down
 
 #### producer 發送任務
 
     docker compose -f docker-compose-producer-network.yml up -d
     DOCKER_IMAGE_VERSION=0.0.3 docker compose -f docker-compose-producer-network-version.yml up -d
+    DOCKER_IMAGE_VERSION=0.0.5 docker compose -f docker-compose-producer-network-version.yml up -d
+    DOCKER_IMAGE_VERSION=0.0.6 docker compose -f docker-compose-producer-duplicate-network-version.yml up -d
 
 #### 查看 docker container 狀況
 
     docker ps -a
 
+#### 啟動 scheduler
+
+    DOCKER_IMAGE_VERSION=0.0.4 docker compose -f docker-compose-scheduler-network-version.yml up -d
+
+#### 關閉 scheduler
+
+    DOCKER_IMAGE_VERSION=0.0.4 docker compose -f docker-compose-scheduler-network-version.yml down
+
 #### 查看 log
 
     docker logs container_name
+
+#### 下載 taiwan_stock_price.csv
+
+    wget https://github.com/FinMind/FinMindBook/releases/download/data/taiwan_stock_price.csv
+
+#### 上傳 taiwan_stock_price.csv
+
+    pipenv run python crawler/upload_taiwan_stock_price_to_mysql.py
