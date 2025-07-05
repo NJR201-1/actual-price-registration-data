@@ -11,6 +11,8 @@ pandas = "*"
 requests = "*"
 apscheduler = "==3.10.4"
 loguru = "==0.6.0"
+ydata-profiling = "*"
+geopy = "*"
 
 [dev-packages]
 

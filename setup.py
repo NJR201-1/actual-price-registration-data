@@ -14,6 +14,8 @@ setup(
     description="test",  # Optional
     long_description=long_description,  # Optional
     long_description_content_type="text/markdown",  # Optional (see note above)
+    author="linsam",  # Optional
+    author_email="samlin266118@gmail.com",  # Optional
     classifiers=[  # Optional
         "Development Status :: 3 - Alpha",
     ],
