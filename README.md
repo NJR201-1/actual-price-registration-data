@@ -451,6 +451,7 @@
     docker build -f with.env.Dockerfile -t tcayi92/tibame_crawler:0.0.4 .
     docker build -f with.env.Dockerfile -t tcayi92/tibame_crawler:0.0.5 .
     docker build -f with.env.Dockerfile -t tcayi92/tibame_crawler:0.0.6 .
+    docker build -f with.env.Dockerfile -t tcayi92/tibame_crawler:0.0.7 .
 
 #### push docker image
 
@@ -460,6 +461,7 @@
     docker push tcayi92/tibame_crawler:0.0.4
     docker push tcayi92/tibame_crawler:0.0.5
     docker push tcayi92/tibame_crawler:0.0.6
+    docker push tcayi92/tibame_crawler:0.0.7
 
 #### 建立 network
 

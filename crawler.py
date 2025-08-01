@@ -39,6 +39,7 @@ import os
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import undetected_chromedriver as uc
 import requests
+import pandas as pd
 
 SECONDS_DELAY = 5 # 等待網頁載入的秒數
 REQUEST_TIMEOUT = 60 # requests 的逾時時間
