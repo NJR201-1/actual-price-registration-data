@@ -10,13 +10,13 @@ RUN apt-get update && \
 RUN pip install pipenv==2022.4.8
 
 # 建立工作目錄 /crawler
-RUN mkdir /housedata
+RUN mkdir /crawler
 
 # 將當前目錄（與 Dockerfile 同層）所有內容複製到容器的 /crawler 資料夾
-COPY . /housedata/
+COPY . /crawler/
 
 # 設定容器的工作目錄為 /crawler，後續的指令都在這個目錄下執行
-WORKDIR /housedata/
+WORKDIR /crawler/
 
 # 根據 Pipfile.lock 安裝所有依賴（確保環境一致性）
 RUN pipenv sync
