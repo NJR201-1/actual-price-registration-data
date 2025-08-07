@@ -16,11 +16,11 @@ pymysql = "==1.1.1"
 google-cloud-bigquery = "==3.20.1"
 tqdm = "*"
 pyarrow = "==12.0.0"
-pandas-profiling = "*"
 json-to-ndjsonify = "*"
 selenium = "*"
 chromedriver = "*"
 undetected-chromedriver = "*"
+ydata-profiling = "*"
 
 [dev-packages]
 
