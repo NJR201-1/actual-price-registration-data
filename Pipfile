@@ -23,6 +23,7 @@ undetected-chromedriver = "*"
 ydata-profiling = "*"
 
 [dev-packages]
+ipykernel = "*"
 
 [requires]
 python_version = "3.8"
